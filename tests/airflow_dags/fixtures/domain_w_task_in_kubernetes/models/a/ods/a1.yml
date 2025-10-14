@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: a1
+    config:
+      dbt_target: "fake_k8s_cluster"

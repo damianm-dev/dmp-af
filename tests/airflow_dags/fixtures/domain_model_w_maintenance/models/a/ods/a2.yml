@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: a2
+    config:
+      maintenance:
+        ttl:
+          key: created_at
+          expiration_timeout: 10
+        optimize_table: true
+        vacuum_table: true

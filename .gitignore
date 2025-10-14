@@ -1,0 +1,10 @@
+.idea/
+.claude/
+logs/
+
+**/__pycache__/**
+
+.coverage*
+
+**/dist/
+**/build/
