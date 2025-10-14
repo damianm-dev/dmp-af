@@ -16,8 +16,6 @@
 It acts as a wrapper around the Airflow DAG,
 allowing you to run the models independently while preserving their dependencies.
 
-This project is a fork of [dbt-af](https://github.com/Toloka/dbt-af) by Toloka AI BV.
-
 ![dmp-af](docs/static/airflow_dag_layout.png)
 
 ### Why?
