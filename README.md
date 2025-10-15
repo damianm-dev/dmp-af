@@ -8,31 +8,24 @@
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-# dmp-af: distributed run of dbt models using Airflow
+# dmp-af: distributed dbt runs on Airflow
 
 ## Overview
 
-**_dmp-af_** is a tool that allows you to run dbt models in a distributed manner using Airflow.
-It acts as a wrapper around the Airflow DAG,
-allowing you to run the models independently while preserving their dependencies.
+**dmp-af** runs your dbt models in parallel on Airflow. Each model becomes an independent task while preserving
+dependencies across domains.
+
+**Built for scale.** Designed for large dbt projects (1000+ models)
+and [data mesh architectures](https://www.datamesh-architecture.com/#what-is-data-mesh). Works with any project size.
 
 ![dmp-af](docs/static/airflow_dag_layout.png)
 
-### Why?
+### Why dmp-af?
 
-1. **_dmp-af_** is [domain-driven](https://www.datamesh-architecture.com/#what-is-data-mesh).
-   It is designed to separate models from different domains into different DAGs.
-   This allows you to run models from different domains in parallel.
-2. **_dmp-af_** is **dbt-first** solution.
-   It is designed to make analytics' life easier.
-   End-users could even not know that Airflow is used to schedule their models.
-   dbt-model's config is an entry point for all your settings and customizations.
-3. **_dmp-af_** brings scheduling to dbt. From `@monthly` to `@hourly` and even [more](examples/manual_scheduling.md).
-4. **_dmp-af_** is an ETL-driven tool.
-   You can separate your models into tiers or ETL stages
-   and build graphs showing the dependencies between models within each tier or stage.
-5. **_dmp-af_** brings additional features to use different dbt targets simultaneously, different tests scenarios, and
-   maintenance tasks.
+1. **Domain-driven architecture** - Separate models by domain into different DAGs, run in parallel, perfect for data mesh
+2. **dbt-first design** - All configuration in dbt model configs, analytics teams stay in dbt, no Airflow knowledge required
+3. **Flexible scheduling** - Multiple schedules per model (`@hourly`, `@daily`, `@weekly`, `@monthly`, [and more](examples/manual_scheduling.md))
+4. **Enterprise features** - Multiple dbt targets, configurable test strategies, built-in maintenance, Kubernetes support
 
 ## Installation
 
@@ -89,19 +82,25 @@ This will create Airflow DAGs for your dbt project.
 
 Check out the documentation for more details [here](docs/docs.md).
 
-## Features
+## Key Features
 
-1. **_dmp-af_** is essentially designed to work with large projects (1000+ models).
-   When dealing with a significant number of dbt objects across different domains,
-   it becomes crucial to have all DAGs auto-generated.
-   **_dmp-af_** takes care of this by generating all the necessary DAGs for your dbt project and structuring them by
-   domains.
-2. Each dbt run is separated into a different Airflow task. All tasks receive a date interval from the Airflow DAG
-   context. By using the passed date interval in your dbt models, you ensure the *idempotency* of your dbt runs.
-3. _**dmp-af**_ lowers the entry threshold for non-infrastructure team members.
-   This means that analytics professionals, data scientists,
-   and data engineers can focus on their dbt models and important business logic
-   rather than spending time on Airflow DAGs.
+**Auto-generated DAGs**
+
+- Automatically creates Airflow DAGs from your dbt project
+- Organizes by domain and schedule
+- Handles dependencies across domains
+
+**Idempotent runs**
+
+- Each model is a separate Airflow task
+- Date intervals passed to every run
+- Reliable backfills and reruns
+
+**Team-friendly**
+
+- Analytics teams stay in dbt
+- No Airflow DAG writing required
+- Infrastructure handled automatically
 
 ## Requirements
 
@@ -125,8 +124,13 @@ Check out the documentation for more details [here](docs/docs.md).
 
 ## About this fork
 
-This project is a fork of [Toloka AI BV's original repository](https://github.com/Toloka/dbt-af).  
-It includes substantial modifications by IJKOS & PARTNERS LTD.  
+This project is a fork of [Toloka AI BV's original repository](https://github.com/Toloka/dbt-af).
+It includes substantial modifications by IJKOS & PARTNERS LTD.
 This fork is not affiliated with or endorsed by Toloka AI BV.
 
 The original project is licensed under the [Apache License 2.0](./LICENSE).
+
+### Migrating from dbt-af
+
+If you're currently using dbt-af and want to migrate to dmp-af, see our [Migration Guide](MIGRATION.md) for step-by-step
+instructions.
