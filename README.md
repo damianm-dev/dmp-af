@@ -22,10 +22,14 @@ and [data mesh architectures](https://www.datamesh-architecture.com/#what-is-dat
 
 ### Why dmp-af?
 
-1. **Domain-driven architecture** - Separate models by domain into different DAGs, run in parallel, perfect for data mesh
-2. **dbt-first design** - All configuration in dbt model configs, analytics teams stay in dbt, no Airflow knowledge required
-3. **Flexible scheduling** - Multiple schedules per model (`@hourly`, `@daily`, `@weekly`, `@monthly`, [and more](examples/manual_scheduling.md))
-4. **Enterprise features** - Multiple dbt targets, configurable test strategies, built-in maintenance, Kubernetes support
+1. **Domain-driven architecture** - Separate models by domain into different DAGs, run in parallel, perfect for data
+   mesh
+2. **dbt-first design** - All configuration in dbt model configs, analytics teams stay in dbt, no Airflow knowledge
+   required
+3. **Flexible scheduling** - Multiple schedules per model (`@hourly`, `@daily`, `@weekly`,
+   `@monthly`, [and more](examples/manual_scheduling.md))
+4. **Enterprise features** - Multiple dbt targets, configurable test strategies, built-in maintenance, Kubernetes
+   support
 
 ## Installation
 
