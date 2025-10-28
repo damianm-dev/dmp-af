@@ -19,6 +19,7 @@ dependencies across domains.
 and [data mesh architecture](https://www.datamesh-architecture.com/#what-is-data-mesh). Works with any project size.
 
 ![dmp-af](docs/static/airflow_dag_layout.png)
+![dbt-af3](docs/static/airflow3_dag_layout.png)
 
 ### Why dmp-af?
 
@@ -121,7 +122,7 @@ Check out the documentation for more details [here](docs/docs.md).
 
 ## Project Information
 
-- [Docs](docs/docs.md)
+- [Docs](https://docs.dmp.af)
 - [PyPI](https://pypi.org/project/dmp-af/)
 - [Contributing](CONTRIBUTING.md)
 - [Original dbt-af Project](https://github.com/Toloka/dbt-af)
