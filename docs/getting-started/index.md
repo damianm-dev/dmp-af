@@ -18,7 +18,7 @@ Before you begin, make sure you have:
 
 1. **Apache Airflow** (version 2.6 or higher)
 2. **dbt-core** (version 1.7 to 1.10)
-3. **Python** (3.10, 3.11, or 3.12)
+3. **Python** (3.10, 3.11, 3.12, or 3.13)
 4. A **dbt project** with a compiled manifest
 
 See [Prerequisites](prerequisites.md) for detailed version compatibility information.

@@ -198,7 +198,7 @@ If the script runs without errors, your DAGs are correctly configured. Then:
 
 ## Compatibility
 
-- **Python**: 3.10, 3.11, 3.12
+- **Python**: 3.10, 3.11, 3.12, 3.13
 - **Airflow**: 2.6.3+, tested up to 2.11.0
 - **dbt-core**: 1.7-1.10
 

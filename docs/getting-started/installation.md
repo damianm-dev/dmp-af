@@ -6,7 +6,7 @@ This page covers how to install dmp-af and its dependencies.
 
 Before installing dmp-af, ensure you have:
 
-- Python 3.10, 3.11, or 3.12
+- Python 3.10, 3.11, 3.12, or 3.13
 - Apache Airflow 2.6 or higher
 - dbt-core 1.7 to 1.10
 

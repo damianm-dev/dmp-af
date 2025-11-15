@@ -24,7 +24,7 @@ dmp-af is tested and verified to work with the following version combinations:
 
 ### Python
 
-- **Version**: 3.10, 3.11, or 3.12
+- **Version**: 3.10, 3.11, 3.12, or 3.13
 - **Package Manager**: pip, poetry, or uv
 
 ### Apache Airflow
