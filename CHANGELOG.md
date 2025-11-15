@@ -11,6 +11,28 @@ the [original dbt-af repository](https://github.com/Toloka/dbt-af/blob/main/CHAN
 
 <!--next-version-placeholder-->
 
+## v0.16.0 (2025-11-15)
+
+### Bug Fixes
+
+- Add Airflow 3.0.x compat for LazyDeserializedDAG
+  ([`86bf470`](https://github.com/dmp-labs/dmp-af/commit/86bf470e8c5f85f59c7f807c97425a0e04ff9902))
+
+- Add mypy and fix issues ([#13](https://github.com/dmp-labs/dmp-af/pull/13),
+  [`4e25a5f`](https://github.com/dmp-labs/dmp-af/commit/4e25a5f7bffacce03f1eb1c743898bac5088dc8a))
+
+### Documentation
+
+- Fix broken links and Firebase deployment issues
+  ([#10](https://github.com/dmp-labs/dmp-af/pull/10),
+  [`f8c1534`](https://github.com/dmp-labs/dmp-af/commit/f8c15344dcb1f71db5884ed1bba3dccf3a6049a0))
+
+### Features
+
+- Add Airflow 3.1.3 and Python 3.13 support ([#11](https://github.com/dmp-labs/dmp-af/pull/11),
+  [`cb41301`](https://github.com/dmp-labs/dmp-af/commit/cb413015d72503d73c945f01f8df0f80ffcdf8b6))
+
+
 ## v0.15.0 (2025-10-28)
 
 ### Chores
