@@ -1,5 +1,5 @@
 [![PyPI - Version](https://img.shields.io/pypi/v/dmp-af)](https://pypi.org/project/dmp-af/)
-[![GitHub Build](https://github.com/dmp-labs/dmp-af/workflows/Tests/badge.svg)](https://github.com/dmp-labs/dmp-af/actions)
+[![GitHub Build](https://github.com/dmp-labs/dmp-af/workflows/PR%20checks/badge.svg)](https://github.com/dmp-labs/dmp-af/actions)
 
 [![License](https://img.shields.io/:license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.txt)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dmp-af.svg)](https://pypi.org/project/dmp-af/)
@@ -18,8 +18,8 @@ dependencies across domains.
 **Built for scale.** Designed for large dbt projects (1000+ models)
 and [data mesh architecture](https://www.datamesh-architecture.com/#what-is-data-mesh). Works with any project size.
 
-![dmp-af](docs/static/airflow_dag_layout.png)
-![dbt-af3](docs/static/airflow3_dag_layout.png)
+![dmp-af](https://raw.githubusercontent.com/dmp-labs/dmp-af/main/docs/static/airflow_dag_layout.png)
+![dbt-af3](https://raw.githubusercontent.com/dmp-labs/dmp-af/main/docs/static/airflow3_dag_layout.png)
 
 ### Why dmp-af?
 
@@ -113,13 +113,14 @@ Check out the documentation for more details [here](docs/docs.md).
 
 | Airflow version | Python versions | `dbt-core` versions |
 |-----------------|-----------------|---------------------|
-| 2.6.3           | >=3.10,<3.12    | >=1.7,<=1.10        |
-| 2.7.3           | >=3.10,<3.12    | >=1.7,<=1.10        |
-| 2.8.4           | >=3.10,<3.12    | >=1.7,<=1.10        |
-| 2.9.3           | >=3.10,<3.13    | >=1.7,<=1.10        |
-| 2.10.5          | >=3.10,<3.13    | >=1.7,<=1.10        |
-| 2.11.0          | >=3.10,<3.13    | >=1.7,<=1.10        |
+| 2.6.3           | ≥3.10,<3.12     | ≥1.7,<=1.10         |
+| 2.7.3           | ≥3.10,<3.12     | ≥1.7,<=1.10         |
+| 2.8.4           | ≥3.10,<3.12     | ≥1.7,<=1.10         |
+| 2.9.3           | ≥3.10,<3.13     | ≥1.7,<=1.10         |
+| 2.10.5          | ≥3.10,<3.13     | ≥1.7,<=1.10         |
+| 2.11.0          | ≥3.10,<3.13     | ≥1.7,<=1.10         |
 | 3.0.6           | ≥3.10,<3.13     | ≥1.7,≤1.10          |
+| 3.1.3           | ≥3.10,<3.14     | ≥1.7,≤1.10          |
 
 ## Project Information
 

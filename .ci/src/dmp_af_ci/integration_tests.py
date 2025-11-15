@@ -7,7 +7,7 @@ import dagger
 from dagger import DefaultPath, Doc, dag, function, object_type
 from packaging.version import Version
 
-PYTHON_VERSIONS = [Version('3.10'), Version('3.11'), Version('3.12')]
+PYTHON_VERSIONS = [Version('3.10'), Version('3.11'), Version('3.12'), Version('3.13')]
 DBT_VERSIONS = [
     Version('1.7'),
     Version('1.8'),
@@ -24,6 +24,7 @@ AIRFLOW_2_VERSIONS = [
 ]
 AIRFLOW_3_VERSIONS = [
     Version('3.0.6'),
+    Version('3.1.3'),
 ]
 
 UV_VERSION = '0.8.19'
@@ -309,6 +310,8 @@ class IntegrationTests:
         """
         if Version(airflow_version) < Version('2.9.0') and Version(python_version) > Version('3.11'):
             return 'skipped'
+        if Version(python_version) >= Version('3.13') and Version(airflow_version) < Version('3.1.2'):
+            return 'skipped'
 
         return await self._test_one_versions_combination_impl(
             source,
@@ -375,5 +378,21 @@ class IntegrationTests:
                 'airflow': [v.base_version for v in AIRFLOW_2_VERSIONS + AIRFLOW_3_VERSIONS],
                 'dbt': [v.base_version for v in DBT_VERSIONS],
             },
+        )
+        return dag.container().from_('alpine').with_new_file(filename, content).file(filename)
+
+    @function
+    def get_quick_test_versions(self) -> dagger.File:
+        """
+        Get versions for quick PR tests (Python + latest Airflow v2/v3 + latest dbt).
+        """
+        filename = 'quick_test_versions.json'
+        content = json.dumps(
+            {
+                'python': [v.base_version for v in PYTHON_VERSIONS],
+                'airflow_v2': max(AIRFLOW_2_VERSIONS).base_version,
+                'airflow_v3': max(AIRFLOW_3_VERSIONS).base_version,
+                'dbt': max(DBT_VERSIONS).base_version,
+            }
         )
         return dag.container().from_('alpine').with_new_file(filename, content).file(filename)
