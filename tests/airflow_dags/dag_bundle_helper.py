@@ -58,8 +58,15 @@ def serialize_dag_for_test(dag: 'DAG') -> None:
             dag_model.bundle_name = bundle_name
 
             # Create a LazyDeserializedDAG which is what write_dag expects
-            # LazyDeserializedDAG only needs the 'data' field
-            lazy_dag = LazyDeserializedDAG.from_dag(dag)
+            # For Airflow 3.0.x: from_dag doesn't exist, use to_dict manually
+            # For Airflow 3.1+: from_dag method is available
+            if hasattr(LazyDeserializedDAG, 'from_dag'):
+                lazy_dag = LazyDeserializedDAG.from_dag(dag)
+            else:
+                # Fallback for Airflow 3.0.x: use SerializedDAG.to_dict() to create data
+                from airflow.serialization.serialized_objects import SerializedDAG
+
+                lazy_dag = LazyDeserializedDAG(data=SerializedDAG.to_dict(dag))
 
             # Now store it in the database
             from airflow.models.serialized_dag import SerializedDagModel
