@@ -128,7 +128,14 @@ class IntegrationTests:
                     '--output-file=requirements.txt',
                 ]
             )
-            # install airflow from official constraints
+            # install airflow first with its official constraints — this
+            # is the source of truth for the Flask/flask-sqlalchemy/Werkzeug
+            # trio. dmp-af's other deps (dbt-core, pytest, ...) are installed
+            # on top unconstrained, which intentionally upgrades shared
+            # transitives (protobuf, typing_extensions, pydantic-core, ...)
+            # to versions dbt-core needs — the airflow ecosystem tolerates
+            # these upgrades at runtime even when its constraints file pins
+            # an older value for reproducibility.
             .with_exec(
                 [
                     'uv',
@@ -149,6 +156,24 @@ class IntegrationTests:
                     '--system',
                     '-r',
                     'requirements.txt',
+                ]
+            )
+            # The unconstrained step above can upgrade Flask past the version
+            # airflow's pinned flask-sqlalchemy supports (e.g. Flask 3 vs
+            # flask-sqlalchemy 2.5.1, which still imports the removed
+            # `_app_ctx_stack`). Force the Flask trio back to the constraint
+            # pins so airflow's runtime imports stay consistent.
+            .with_exec(
+                [
+                    'uv',
+                    'pip',
+                    'install',
+                    '--system',
+                    '-c',
+                    f'https://raw.githubusercontent.com/apache/airflow/constraints-{airflow_version}/constraints-{python_version}.txt',
+                    'flask',
+                    'flask-sqlalchemy',
+                    'werkzeug',
                 ]
             )
         )
@@ -393,6 +418,45 @@ class IntegrationTests:
                 'airflow_v2': max(AIRFLOW_2_VERSIONS).base_version,
                 'airflow_v3': max(AIRFLOW_3_VERSIONS).base_version,
                 'dbt': max(DBT_VERSIONS).base_version,
+            }
+        )
+        return dag.container().from_('alpine').with_new_file(filename, content).file(filename)
+
+    @function
+    async def get_latest_stable_airflow(self) -> dagger.File:
+        """
+        Discover the latest stable apache-airflow on PyPI and compare to the matrix max.
+
+        Output JSON fields:
+          latest:           highest non-prerelease version on PyPI
+          current_max:      max(AIRFLOW_3_VERSIONS) baked into this repo
+          newer_available:  latest > current_max
+          bump_kind:        'patch' | 'minor' | 'major' | 'none'
+                            'major' is reported but never auto-bumped by the workflow.
+        """
+        all_versions = await self._get_all_available_package_versions('apache-airflow')
+        stable_versions = [v for v in all_versions if not v.is_prerelease]
+        if not stable_versions:
+            raise Exception('No stable apache-airflow versions found on PyPI')
+        latest = max(stable_versions)
+        current_max = max(AIRFLOW_3_VERSIONS)
+
+        if latest <= current_max:
+            bump_kind = 'none'
+        elif latest.major > current_max.major:
+            bump_kind = 'major'
+        elif latest.minor > current_max.minor:
+            bump_kind = 'minor'
+        else:
+            bump_kind = 'patch'
+
+        filename = 'latest_airflow.json'
+        content = json.dumps(
+            {
+                'latest': latest.base_version,
+                'current_max': current_max.base_version,
+                'newer_available': latest > current_max,
+                'bump_kind': bump_kind,
             }
         )
         return dag.container().from_('alpine').with_new_file(filename, content).file(filename)
