@@ -11,6 +11,25 @@ the [original dbt-af repository](https://github.com/Toloka/dbt-af/blob/main/CHAN
 
 <!--next-version-placeholder-->
 
+## v0.17.0 (2026-06-25)
+
+### Documentation
+
+- Add Python 3.13 to all documentation
+  ([`c7b79ab`](https://github.com/dmp-labs/dmp-af/commit/c7b79abb38b1e1bb6ac26e9557ced8448842e042))
+
+- Update links in README.md ([#15](https://github.com/dmp-labs/dmp-af/pull/15),
+  [`b4bedca`](https://github.com/dmp-labs/dmp-af/commit/b4bedcaba1d7da227607905b54d93c8a18b68e88))
+
+### Features
+
+- Add Airflow 3.2.x support ([#18](https://github.com/dmp-labs/dmp-af/pull/18),
+  [`6b352d1`](https://github.com/dmp-labs/dmp-af/commit/6b352d1fc79da47966bf9e834523d00e4ca45e3c))
+
+- Add weekly auto-PR for new Airflow releases ([#19](https://github.com/dmp-labs/dmp-af/pull/19),
+  [`0426344`](https://github.com/dmp-labs/dmp-af/commit/04263448d96638a208c35e4bc9f6a0d6675dd02a))
+
+
 ## v0.16.0 (2025-11-15)
 
 ### Bug Fixes
