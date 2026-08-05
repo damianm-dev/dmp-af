@@ -11,6 +11,14 @@ the [original dbt-af repository](https://github.com/Toloka/dbt-af/blob/main/CHAN
 
 <!--next-version-placeholder-->
 
+## v0.18.0 (2026-08-05)
+
+### Features
+
+- Add Airflow 3.3.0 support ([#21](https://github.com/dmp-labs/dmp-af/pull/21),
+  [`f22dc91`](https://github.com/dmp-labs/dmp-af/commit/f22dc9183c1b0b7005a3c068b9123ea5ac2e481e))
+
+
 ## v0.17.0 (2026-06-25)
 
 ### Documentation
